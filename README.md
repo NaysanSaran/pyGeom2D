@@ -1,4 +1,4 @@
-# PyGeometry 
+# pyGeom2D
 
 Python package to create 2D geometries.
 
@@ -7,7 +7,7 @@ Python package to create 2D geometries.
 ## Installation
 
 ```sh
-pip install --index-url https://test.pypi.org/simple/ --no-deps pygeometry-pkg-naysan -U
+pip install pyGeom2D
 ```
 
 # Usage Examples
@@ -46,7 +46,7 @@ p2 = Point(5, 4, color='green')
 l = Line(p1=p1, p2=p2)
 
 axes.addMany([p1, p2, l])
-axes.draw()
+axes.draw("line_demo.png")
 ```
 
 <img src="./img/line_2points.png" />
@@ -56,7 +56,6 @@ axes.draw()
 
 ```python
 from pygeom import Axes, Point, Triangle
-%matplotlib inline # For Jupyter Notebook
 
 # Create the cartesian axis
 axes = Axes(xlim=(-1,10), ylim=(-1,10), figsize=(12,10))
@@ -81,7 +80,6 @@ axes.draw()
 
 ```python
 from pygeom import Axes, Point, Rectangle
-%matplotlib inline
 
 # Create the cartesian axis
 axes = Axes(xlim=(-1,7), ylim=(-1,7), figsize=(12,10))
@@ -105,7 +103,6 @@ axes.draw()
 
 ```python
 from pygeom import Axes, Point, Polygon
-%matplotlib inline
 
 # Create the cartesian axis
 axes = Axes(xlim=(-1,10), ylim=(-1,10), figsize=(12,10))

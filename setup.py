@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name    = "pyGeom2D",
-    version = "0.1.1",
+    version = "0.1.2",
     author  = "Naysan Saran",
     author_email    = "naysan.saran@gmail.com",
     description     = "A package for 2D geometry in Python",
@@ -15,7 +15,7 @@ setuptools.setup(
     license         = "MIT",
     packages        = setuptools.find_packages(),
     include_package_data = True,
-    install_requires=["matplotlib", "numpy"],
+    install_requires=["matplotlib", "numpy", "scipy"],
     classifiers     = [
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

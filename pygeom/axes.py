@@ -71,7 +71,7 @@ class Axes():
         self.head_length = yrange/30
 
 
-    def draw(self):
+    def draw(self, img=None):
 
         self.scale_arrows()
         self.fig = plt.figure(figsize=self.figsize)
@@ -92,7 +92,11 @@ class Axes():
             if shape == "Ellipse" and self.drawMajor:
                 ellipse.v_major.draw()
                 ellipse.v_minor.draw()
-        plt.show()
+
+        if img is None:
+            plt.show()
+        else:
+            plt.savefig(img)
 
 
     #-------------------------------------------------
