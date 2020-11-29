@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+__pycache__
+.*.swp
+pygeometry_pkg_naysan.egg-info
+dist/
+build/

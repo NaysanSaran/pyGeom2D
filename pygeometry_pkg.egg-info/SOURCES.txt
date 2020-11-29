@@ -1,0 +1,17 @@
+README.md
+setup.py
+pygeom/__init__.py
+pygeom/axes.py
+pygeom/ellipse.py
+pygeom/line.py
+pygeom/point.py
+pygeom/polygon.py
+pygeom/rectangle.py
+pygeom/segment.py
+pygeom/triangle.py
+pygeom/util.py
+pygeom/vector.py
+pygeometry_pkg.egg-info/PKG-INFO
+pygeometry_pkg.egg-info/SOURCES.txt
+pygeometry_pkg.egg-info/dependency_links.txt
+pygeometry_pkg.egg-info/top_level.txt
