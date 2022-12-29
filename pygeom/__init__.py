@@ -1,6 +1,7 @@
 from .axes      import Axes
-from .point     import Point, midpoint
+from .point     import Point
 from .line      import Line
+from .curve     import Curve
 from .vector    import Vector
 from .segment   import Segment
 from .ellipse   import Ellipse

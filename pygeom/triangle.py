@@ -1,12 +1,12 @@
-import sys
-import matplotlib.pyplot as plt
-import numpy as np
 import math
+import numpy as np
 
-from scipy import stats
+import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 from .point import Point
+from .util import distance
+
 
 class Triangle():
 
@@ -18,6 +18,8 @@ class Triangle():
         self.fill   = fill
         self.alpha  = alpha
 
+        self.get_perimeter()
+
 
     def __str__(self):
         return "Triangle(%s,%s,%s)" % (self.p1, self.p2, self.p3)
@@ -26,6 +28,17 @@ class Triangle():
         return "Triangle(%s,%s,%s)" % (self.p1, self.p2, self.p3)
 
     
+    def get_perimeter(self):
+        """ Triangle perimeter """
+        self.perimeter = distance(p1, p2) + distance(p2, p3) + distance(p1, p3)
+        return self.perimeter
+
+    
+    def get_area(self):
+        """ Triangle area """
+        pass
+
+
     def draw(self, ax):
 
         self.array = np.array([

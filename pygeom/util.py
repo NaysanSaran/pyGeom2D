@@ -1,5 +1,18 @@
-import numpy as np
 import math
+import numpy as np
+
+from fractions import Fraction
+
+
+
+def midpoint(p1, p2):
+    """
+    Returns the (x, y) location of the midpoint between p1 and p2
+    """
+    x = 0.5*(p1[0] + p2[0])
+    y = 0.5*(p1[1] + p2[1])
+    return (x, y)
+
 
 def distance(p1, p2):
     """
@@ -11,14 +24,25 @@ def distance(p1, p2):
     return np.sqrt(ssq)
 
 
-def rotate(x, y, beta):
+def rotate(vec, theta):
     """
-    Rotate vector(x,y) by beta radians counterclockwise
-    https://matthew-brett.github.io/teaching/rotation_2d.html
+    Rotate vector(x,y) by theta radians counterclockwise
     """
-    x2 = math.cos(beta)*x - math.sin(beta)*y
-    y2 = math.sin(beta)*x + math.cos(beta)*y
-    return (x2, y2)
+    # rotation matrix
+    A = np.array([
+        [math.cos(theta), -math.sin(theta)],
+        [math.sin(theta),  math.cos(theta)]
+    ])
+    v = A.dot(vec)
+    return v
+
+
+def translate(vec, transv):
+    """
+    Translate vector vec(x,y) by vector transv(tx, ty)
+    """
+    v = np.array([vec[0] + transv[0], vec[1] + transv[1]])
+    return v
 
 
 def get_chisquare(ci):
@@ -55,5 +79,85 @@ def update_sigma(old_sigma, s_major, s_minor, ci=0.975):
     cov = np.matmul(P, D)
     cov = np.matmul(cov, np.linalg.inv(P))
     return cov
+
+
+def get_axes_arrow_shape(xlim, ylim):
+    """
+    Scale the Axes arrows according to the limits of the axes
+    """
+    Dx = xlim[1] - xlim[0]
+    Dy = ylim[1] - ylim[0]
+
+    # arrow length, x-axis arrow width and y-axis arrow width
+    diag  = math.sqrt(math.pow(Dx, 2) + math.pow(Dy, 2))
+    leng  = diag/50. 
+    width = min(Dx/50., Dy/50.)
+
+    # x-axis and y-axis arrow coordinates
+    x_arr = np.array([
+        [xlim[1]+2*leng,  0], 
+        [xlim[1]+1*leng,  0.5*width], 
+        [xlim[1]+1*leng, -0.5*width]
+    ])
+    y_arr = np.array([
+        [ 0        , ylim[1]+2*leng], 
+        [-0.5*width, ylim[1]+1*leng], 
+        [ 0.5*width, ylim[1]+1*leng]
+    ])
+    return x_arr, y_arr
+
+
+
+def get_theta(x, y, rad=True):
+    """
+    Get the angle between the x-axis and the point P(x,y)
+    """
+    theta = math.atan2(y,x)
+    if rad == False:
+        theta = math.degrees(theta) 
+    return theta
+
+
+def pprint_float(x, digits=3):
+    """ 
+    Return float as fraction, if it looks good.
+    Otherwise keep the float
+    """
+    if x == int(x):
+        return str(int(x))
+    
+    f = Fraction(x)
+    
+    if len(str(f.numerator)) < 7:
+        s = "%s/%s" % (f.numerator, f.denominator)
+    else:
+        s = str(np.around(x, digits))
+    return s
+
+
+def get_text_location(x, y, xlim, ylim, loc):
+    """
+    Get text (x,y) coordinates depending on the loc parameter
+    """
+    dx = 0.04 * (xlim[1] - xlim[0])
+    dy = 0.04 * (ylim[1] - ylim[0])
+
+    if loc == 'up':
+        tx = x
+        ty = y + dy
+    elif loc == 'down':
+        tx = x
+        ty = y - dy
+    elif loc == 'left':
+        tx = x - dx
+        ty = y
+    elif loc == 'right':
+        tx = x + dx
+        ty = y
+    else:
+        raise Exception("Unsupported value for loc: '%s' % loc")
+    return tx, ty
+
+
 
 

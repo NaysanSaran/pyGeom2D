@@ -29,7 +29,7 @@ class Segment():
     def __len__(self):
         return self.len
     
-    def draw(self):
+    def draw(self, ax, xlim, ylim):
         x_values = [self.p1[0], self.p2[0]] # Gather x values
         y_values = [self.p1[1], self.p2[1]] # Gatner y values
         plt.plot(
