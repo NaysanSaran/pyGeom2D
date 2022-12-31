@@ -134,7 +134,7 @@ for v_sting, v_float in multiples.items():
     )
     axes.add(line)
 
-axes.draw()
+axes.draw('./img/tutorial02-lines-angles.png')
 ```
 
 <img src="./img/tutorial02-lines-angles.png" />
