@@ -160,9 +160,16 @@ class Line():
                 label = self.equation
 
             # add text at midpoint between p1 and p2
+            if dx < 0 and dy > 0:
+                theta = self.theta - 180
+            elif dx > 0 and dy < 0:
+                theta = self.theta
+            else:
+                theta = self.theta % 180
+
             ax.text(
-                tx, ty, label, 
-                color=self.color, rotation=self.theta, fontsize=12, ha='center', va='center'
+                tx, ty, label, color=self.color, rotation=theta, 
+                fontsize=12, ha='center', va='center'
             )
 
 
